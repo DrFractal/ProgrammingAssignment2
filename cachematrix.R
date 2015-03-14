@@ -1,3 +1,6 @@
+## Find the inverse of a matrix and cache it, so that future calls return the 
+## cached inverse.
+
 ## makeCacheMatrix: This function creates a special "matrix" object that can cache 
 ##   its inverse.
 
