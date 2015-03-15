@@ -6,70 +6,70 @@
 #############################################
 ## R Programming, Programming Assignment 2 ##
 #############################################
-##
-## Finds the inverse of a matrix and caches it, so that future calls return the 
-## cached inverse.
+###############################################################################
+## Finds the inverse of a matrix and caches it, so that future calls return 
+## the cached inverse.
 ##
 ## There are two functions:
 ##
-## makeCacheMatrix: This function creates a special "matrix" object that can cache 
-##   its inverse. 
-##   In effect, makeCacheMatrix acts like a class and calling it results in an 
-##   object with methods specified in the returned list.
+## makeCacheMatrix: This function creates a special "matrix" object that can 
+##   cache its inverse. 
+##   In effect, makeCacheMatrix acts like a class and calling it results in 
+##   an object with methods specified in the returned list.
 ##
-## cacheSolve: This function computes the inverse of the special "matrix" returned 
-##   by makeCacheMatrix above.
-##   If the inverse has already been calculated (and the matrix has not changed), 
-##   then cachesolve retrieves the inverse from the cache.
+## cacheSolve: This function computes the inverse of the special "matrix" 
+##   returned by makeCacheMatrix above.
+##   If the inverse has already been calculated (and the matrix has not 
+##   changed), then cachesolve retrieves the inverse from the cache.
 ##   Uses 'solve' to calculate the inverse of a square matrix. 
 ##   Assumes that the matrix supplied is square and invertible.
-##################################################################################
+###############################################################################
 
 
-##################################################################################
-## makeCacheMatrix: This function creates a special "matrix" object that can cache 
-##   its inverse.
-##################################################################################
+###############################################################################
+## makeCacheMatrix: This function creates a special "matrix" object that can 
+##   cache its inverse.
+###############################################################################
 makeCacheMatrix <- function(x = matrix()) {
-  inverse <- NULL
-  getx <- function() x
-  setx <- function(y) {
-    x <<- y
-    inverse <<- NULL
-  }
-  getinverse <- function() inverse
-  setinverse <- function(inv){
-    inverse <<- inv
-  }
-  list(getx = getx, 
-       setx = setx, 
-       getinverse = getinverse, 
-       setinverse = setinverse) ## return the list of sub-functions
+    inverse <- NULL
+    getx <- function() x
+    setx <- function(y) {
+        x <<- y
+        inverse <<- NULL
+    }
+    getinverse <- function() inverse
+    setinverse <- function(inv){
+        inverse <<- inv
+    }
+    list(getx = getx, 
+         setx = setx, 
+         getinverse = getinverse, 
+         setinverse = setinverse) ## return the list of sub-functions
 }
 
-###################################################################################
-## cacheSolve: This function computes the inverse of the special "matrix" returned 
-##   by makeCacheMatrix above.
-##   If the inverse has already been calculated (and the matrix has not changed), 
-##   then cachesolve retrieves the inverse from the cache.
+###############################################################################
+## cacheSolve: This function computes the inverse of the special "matrix" 
+##   returned by makeCacheMatrix above.
+##   If the inverse has already been calculated (and the matrix has not 
+##   changed), then cachesolve retrieves the inverse from the cache.
 ##   Assumes that the matrix supplied is square and invertible.
 ##   Internally uses 'solve' to calculate the inverse of a square matrix. 
 ##   If the matrix in x is set to NULL, it will return NULL.
 ##   Return a matrix that is the inverse of 'x', assumes x is a square 
 ##   invertible matrix.
-###################################################################################
+###############################################################################
 cacheSolve <- function(x, ...) {
-  inverse <- x$getinverse()
-  if( !is.null(inverse) ){
-    message("returning inverse from cache")
-    return(inverse)
-  }
-  data <- x$getx()
-  if(!is.null(data)){        ## check to be sure x data isn't null
-    inverse <- solve(data)   ## find the inverse at last!
-    x$setinverse(inverse)    ## set the inverse, so it's cached
-  }
-  inverse                    ## return the inverse
+    inverse <- x$getinverse()
+    if( !is.null(inverse) ){
+        message("returning inverse from cache")
+        return(inverse)
+    }
+    data <- x$getx()
+    if(!is.null(data)){        ## check to be sure x data isn't null
+        inverse <- solve(data)   ## find the inverse at last!
+        x$setinverse(inverse)    ## set the inverse, so it's cached
+    }
+    inverse                    ## return the inverse
 }
 
 ####################
@@ -153,9 +153,10 @@ cacheSolve <- function(x, ...) {
 ## Cached version returns the same result, and prints
 ## "returning inverse from cache"
 
-#################################################################################
-##### Test 4: 3x3 Matrix: Rotate about z by angle, shrinking or expanding by r ##
-#################################################################################
+###############################################################
+##### Test 4: 3x3 Matrix:                                    ##
+#####   Rotate about z by angle, shrinking or expanding by r ##
+###############################################################
 # r <- (sqrt(5) -1 )/2
 # angle <- (pi / 4)
 # y1 <- (r * sin(angle))
